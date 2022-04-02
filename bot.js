@@ -95,7 +95,13 @@ async function attemptPlace() {
     const rgbaOrder = currentOrders.data;
     const rgbaCanvas = currentMap.data;
 
+    var order = [];
     for (var i = 0; i < 1000000; i++) {
+        order.push(i);
+    }
+    order.sort(() => Math.random() - 0.5);
+
+    for (const i of order) {
         // negeer lege order pixels.
         if (rgbaOrder[(i * 4) + 3] === 0) continue;
 
