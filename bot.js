@@ -4,7 +4,7 @@ import WebSocket from 'ws';
 
 const VERSION_NUMBER = 4;
 
-console.log(`PlaceNL headless client V${VERSION_NUMBER}`);
+console.log(`PlaceLucas headless client V${VERSION_NUMBER}`);
 
 const args = process.argv.slice(2);
 
@@ -143,7 +143,7 @@ async function refreshTokens() {
 function connectSocket() {
     console.log('Verbinden met PlaceNL server...')
 
-    socket = new WebSocket('wss://placenl.noahvdaa.me/api/ws');
+    socket = new WebSocket('wss://place.khs.li/api/ws');
 
     socket.onerror = function(e) {
         console.error("Socket error: " + e.message)
@@ -166,7 +166,7 @@ function connectSocket() {
         switch (data.type.toLowerCase()) {
             case 'map':
                 console.log(`Nieuwe map geladen (reden: ${data.reason ? data.reason : 'verbonden met server'})`)
-                currentOrders = await getMapFromUrl(`https://placenl.noahvdaa.me/maps/${data.data}`);
+                currentOrders = await getMapFromUrl(`https://place.khs.li/maps/${data.data}`);
                 currentOrderList = getRealWork(currentOrders.data);
                 break;
             default:
